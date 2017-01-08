@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <Scylla/OsInfo.h>
 #include <Scylla/Settings.h>
+#include <Scylla/Util.h>
 #include <Scylla/Version.h>
 
 #include "..\PluginGeneric\Injector.h"
@@ -94,7 +95,7 @@ static int MinjectDll(t_table *pt,wchar_t *name,ulong index,int mode)
     else if (mode==MENU_EXECUTE)
     {
         wchar_t dllPath[MAX_PATH] = {};
-        if(GetFileDialog(dllPath))
+        if (scl::GetFileDialogW(dllPath, _countof(dllPath)))
             injectDll(ProcessId, dllPath);
 
         return MENU_REDRAW;
@@ -169,7 +170,7 @@ static int Mabout(t_table *pt,wchar_t *name,ulong index,int mode)
         // Debuggee should continue execution while message box is displayed.
         Resumeallthreads();
 
-        ShowAbout(hwollymain);
+        scl::ShowAboutBox(hwollymain);
 
         // Suspendallthreads() and Resumeallthreads() must be paired, even if they
         // are called in inverse order!

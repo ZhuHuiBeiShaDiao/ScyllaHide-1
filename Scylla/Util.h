@@ -19,6 +19,8 @@ namespace scl
 
     bool FileExistsW(const wchar_t *wszPath);
 
+    bool GetFileDialogW(wchar_t *buffer, DWORD buffer_size);
+
     std::vector<std::wstring> IniLoadSectionNames(const wchar_t *file);
 
     std::wstring IniLoadString(const wchar_t *file, const wchar_t *section, const wchar_t *key, const wchar_t *default_value);
